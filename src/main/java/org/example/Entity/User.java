@@ -1,18 +1,11 @@
 package org.example.Entity;
 
-
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
-@Table(name = "Users")
+@Table(name = "users")
 public class User {
 
     @Id
@@ -20,10 +13,10 @@ public class User {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     @Column(name = "age")
@@ -32,13 +25,15 @@ public class User {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    public User(String name, String email, int age, LocalDateTime createdAt){
+    public User() {
 
+    }
+
+    public User(String name, String email, int age, LocalDateTime createdAt){
         this.name = name;
         this.email = email;
         this.age = age;
         this.createdAt = createdAt;
-
     }
 
     //getters
