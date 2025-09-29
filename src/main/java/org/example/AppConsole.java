@@ -59,8 +59,9 @@ public class AppConsole {
         System.out.print("Age: ");
         int age = Integer.parseInt(scanner.nextLine());
 
-        userService.createUser(name, email, age, java.time.LocalDateTime.now());
-        System.out.println("User created ");
+        User user = userService.createUser(name, email, age, java.time.LocalDateTime.now());
+
+        System.out.println("User created with ID: " + user.getId());
 
         logger.info("User created: name {}, email {}, age {}", name, email, age);
     }
