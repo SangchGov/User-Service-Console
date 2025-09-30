@@ -1,6 +1,7 @@
 package org.example.Entity;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -10,105 +11,89 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(nullable = false)
     private String name;
 
-    @Column(name = "email", nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(name = "age")
     private int age;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
     public User() {
-
     }
 
-    public User(String name, String email, int age, LocalDateTime createdAt){
+    public User(String name, String email, int age, LocalDateTime createdAt) {
         this.name = name;
         this.email = email;
         this.age = age;
         this.createdAt = createdAt;
     }
 
-    //getters
-
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    //setters
-
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public int getAge() {
+        return age;
     }
 
     public void setAge(int age) {
         this.age = age;
     }
 
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
 
-    //equals and hash for id
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
+        if (this == o) return true;
+        if (!(o instanceof User user)) return false;
         return Objects.equals(id, user.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hash(id);
     }
-
-
-    //toString
-
 
     @Override
     public String toString() {
         return "User { " +
-                "id=" + id + ", " +
-                "name" + name + ", " +
-                "email" + email + ", " +
-                "age" + age + ", " +
-                "created at" + createdAt + ", " +
-                "}"
-                ;
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", age=" + age +
+                ", createdAt=" + createdAt +
+                " }";
     }
 }

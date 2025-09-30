@@ -14,7 +14,7 @@ public class HibernateUntilApp {
         try {
 
             StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-                    .configure("hibernate.cfg.xml") // можно явно указать
+                    .configure()
                     .build();
 
             Metadata metadata = new MetadataSources(registry).getMetadataBuilder().build();
@@ -28,9 +28,5 @@ public class HibernateUntilApp {
 
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
-    }
-
-    public static void shutdown() {
-        getSessionFactory().close();
     }
 }
